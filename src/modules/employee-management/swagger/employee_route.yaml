@@ -1,0 +1,173 @@
+paths:
+  /employee:
+    ##################### GET ALL ##########################
+    get:
+      tags:
+        - Employee Management
+      summary: "Retrieve employee details"
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: id
+          type: string
+          description: Employee id
+        - in: query
+          name: first_name
+          type: string
+          description: Employee first name
+        - in: query
+          name: last_name
+          type: string
+          description: Employee last name
+        - in: query
+          name: email
+          type: string
+          description: Employee email
+        - in: query
+          name: gender
+          type: string
+          description: Employee gender
+      responses:
+        200:
+          $ref: "#components/responses/200"
+        401:
+          $ref: "#components/responses/401"
+        500:
+          $ref: "#components/responses/500"
+
+    post:
+      tags:
+        - Employee Management
+      summary: "Add employee details"
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "100"
+              first_name:
+                type: string
+                example: "Gerdafg"
+              last_name:
+                type: string
+                example: "Trantowhgh"
+              email:
+                type: string
+                example: "Maurio.Str@yahoo.com"
+              number:
+                type: string
+                example: "+94771277681"
+              photo:
+                type: string
+                example: "https://randomuser.me/api/portraits/men/85.jpg"
+              gender:
+                type: string
+                enum: [F, M]
+                example: "M"
+
+      responses:
+        201:
+          allOf:
+            - $ref: "#components/responses/200"
+            - schema:
+                type: object
+        500:
+          $ref: "#components/responses/500"
+
+    ##################### GET ONE BY ID ##########################
+  /employee/{id}:
+    get:
+      tags:
+        - Employee Management
+      summary: "Retrieve employee by ID "
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: Employee id
+      responses:
+        200:
+          $ref: "#components/responses/200"
+        401:
+          $ref: "#components/responses/401"
+        500:
+          $ref: "#components/responses/500"
+
+    ##################### PUT ##########################
+    put:
+      tags:
+        - Employee Management
+      summary: "Update employee"
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: Employee id
+        - in: body
+          name: body
+          description: Attributes needed to update
+          require: true
+          schema:
+            type: "object"
+            properties:
+              first_name:
+                type: string
+                example: "Gerdafg"
+              last_name:
+                type: string
+                example: "Trantowhgh"
+              email:
+                type: string
+                example: "Maurio.Str@yahoo.com"
+              number:
+                type: string
+                example: "+94771277681"
+              photo:
+                type: string
+                example: "https://randomuser.me/api/portraits/men/85.jpg"
+              gender:
+                type: string
+                enum: [F, M]
+                example: "F"
+
+      responses:
+        200:
+          $ref: "#components/responses/200"
+        401:
+          $ref: "#components/responses/401"
+        404:
+          $ref: "#components/responses/404"
+        500:
+          $ref: "#components/responses/500"
+
+    ##################### DELETE ##########################
+
+    delete:
+      tags:
+        - Employee Management
+      summary: "Retrieve Employee by ID "
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: Employee id
+      responses:
+        200:
+          $ref: "#components/responses/200"
+        401:
+          $ref: "#components/responses/401"
+        500:
+          $ref: "#components/responses/500"

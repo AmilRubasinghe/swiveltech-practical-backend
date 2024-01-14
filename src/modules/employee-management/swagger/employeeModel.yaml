@@ -1,0 +1,19 @@
+definitions: # Schema defination for request body
+  employee:
+    type: object
+    properties:
+      id:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      number:
+        type: string
+      photo:
+        type: string
+      gender:
+        type: string
+        enum: [F, M]
